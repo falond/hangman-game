@@ -1,26 +1,25 @@
 
-// hangman words 
-// Records how many times a letter can be pressed
+// Letters that can be pressed
 var letters = ['a','b','c','d','e','f','g','h','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 // All the words
 var words = ['artic','brisk','chills','december','eggnog','fireplace','gloves','hibernate','ice','jacket','log','melt','polar','scarf','ski','sleet','snowball','sweater','thaw','windy','wool'];
-// Holds the choosen word
+// Selected word
 var selectedWord = "";
-// Holds the letters in a word
+// Letters in a word
 var lettersInAWord = [];
-// Holds the number of blanks in a word
+// Number of blanks in a word
 var numberOfBlanks = 0;
-// Hold the blanks and successful guesses
+// Blanks and good guesses
 var blanksAndGoodGuesses = [];
 // Holds wrong gueses
 var wrongLetters = [];
-// Counter
+// Counter for wins and loses etc
 var win = 0;
 var lose = 0;
 var guessesLeft = 9;
 var rightGuesses = 0;
 
-//Functions
+
 function reset()
 {
     //Pick word randomly from words
@@ -31,7 +30,6 @@ function reset()
     numberOfBlanks = lettersInAword.length;
 
     //RESET
-    //===========================================================
     letterGuessed = 0;
     rightGuesses = 0;
     guessesLeft = 9;
@@ -53,7 +51,6 @@ function startGame()
     numberOfBlanks = lettersInAWord.length;
     
     //RESET
-    //===========================================================
     rightGuesses = 0;
     guessesLeft = 9;
     wrongLetters =[];
@@ -67,13 +64,13 @@ function startGame()
         document.getElementById('currentWord').innerHTML = "Current Word: " + blanksAndGoodGuesses;
     }
 
-    //Changes HTML 
+    //Html 
     document.getElementById('currentWord').innerHTML = "Current Word: " + blanksAndGoodGuesses.join(' ');
     document.getElementById('guessesleft').innerHTML = "Number of guesses remaining: " + guessesLeft;
     document.getElementById('wins').innerHTML = "Wins: " + win;
-    document.getElementById('lossCounter').innerHTML = lose;
+    document.getElementById('lossCounter').innerHTML = "Loses: " + lose;
     document.getElementById('lettersguessed').innerHTML = "Letters already guessed: " + wrongLetters;
-    // Testing / Debugging
+    // Test
     console.log(selectedWord);
     console.log(lettersInAWord);
     console.log(numberOfBlanks);
@@ -82,11 +79,11 @@ function startGame()
 
 function compareLetters(userKey)
 {
-                console.log('WORKING!');
+                console.log('Jackpot!');
                 //If user key exist in words then perform this function 
                 if(selectedWord.indexOf(userKey) > -1)
                 {
-                    //Loops depending on the amount of blanks 
+                    //Loops but depending on the amount of blanks 
                     for(var i = 0; i < numberOfBlanks; i++)
                     {
                         //Fills in right index with user key
@@ -97,7 +94,7 @@ function compareLetters(userKey)
                             document.getElementById('currentWord').innerHTML = "Current Word: " + blanksAndGoodGuesses.join(' ');
                         }   
                     }
-                    //Test / Debug
+                    //Test
                     console.log(blanksAndGoodGuesses);
                 }
                 //Wrong Keys
@@ -105,10 +102,10 @@ function compareLetters(userKey)
                 {
                     wrongLetters.push(userKey);
                     guessesLeft--;
-                    //Changes HTML
+                    //Html
                     document.getElementById('guessesleft').innerHTML = "Number of guesses remaining: " + guessesLeft;
                     document.getElementById('lettersguessed').innerHTML = "Letters already guessed: " +  wrongLetters;
-                    //Test / Debug
+                    //Test
                     console.log('Wrong Letters = ' + wrongLetters);
                     console.log('Guesses left are ' + guessesLeft);
                 }
@@ -122,7 +119,7 @@ function winLose()
     {
         //Counts Wins 
         win++;
-        //Changes HTML
+        //Html
         document.getElementById('wins').innerHTML = "Wins: " + win;
         alert('You Win');
         reset();
@@ -132,8 +129,8 @@ function winLose()
     {
         //Counts losses
         lose++;
-        //Changes HTML
-        document.getElementById('lossCounter').innerHTML = lose;
+        //Html
+        document.getElementById('lossCounter').innerHTML = "Loses: " + lose;
         alert('You Lose');
         reset();
     }
@@ -150,10 +147,10 @@ document.onkeyup = function(event)
     {   
         if(letterGuessed === letters[i] && test === true)
         {
-            var spliceDword = letters.splice(i,1);
-            //Test / Debug
+            var spliceTheword = letters.splice(i,1);
+            //Test
             console.log('Double word is = ' + letters[i])
-            console.log('Spliced Word is = ' + spliceDword);
+            console.log('Spliced Word is = ' + spliceTheword);
 
             compareLetters(letterGuessed);
             winLose();
