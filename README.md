@@ -8,7 +8,7 @@ A fun little JavaScript hangman game with a Winter theme. Using HMTL, Javascript
 To play, just guess a letter by typing your guess on your keyboard. If you guess incorrectly 9 times, you lose. If you guess the word before that happens, you win. After you win or lose, you can restart the game by refreshing your browser.
 
 
-![An image of the game](../images/screenshot-of-game.png)
+![An image of the game](./screenshot-of-game.png)
 
 ### To run locally:
 
